@@ -1,0 +1,54 @@
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+gunicorn==21.2.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+alembic==1.12.1
+
+# Cache & Queue
+redis==5.0.1
+celery==5.3.4
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+pydantic[email]==2.5.2
+pydantic-settings==2.1.0
+
+# File Processing
+python-docx==1.1.0
+PyPDF2==3.0.1
+openpyxl==3.1.2
+pandas==2.1.3
+xlrd==2.0.1
+
+# AI Integration
+openai==1.3.7
+langchain==0.0.340
+tiktoken==0.5.2
+
+# Data Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.18.0
+
+# Utilities
+httpx==0.25.2
+aiofiles==23.2.1
+python-dotenv==1.0.0
+loguru==0.7.2
+
+# Rate Limiting & Security
+slowapi==0.1.9
+python-multipart==0.0.6
+
+# Location Service
+geopy==2.4.1
+
+# ID Card Validation
+id-validator==1.0.20
