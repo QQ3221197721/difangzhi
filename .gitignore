@@ -1,29 +1,84 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
+# 地方志数据智能管理系统 - Git 忽略文件
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# 虚拟环境
+venv/
+ENV/
+env/
+.venv/
 
-### VS Code ###
+# IDE
+.idea/
 .vscode/
+*.swp
+*.swo
+*~
 
-### Mac OS ###
+# 日志
+logs/
+*.log
+
+# 环境配置
+.env
+.env.local
+.env.*.local
+
+# 上传文件
+uploads/
+temp/
+
+# 测试
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+dist/
+build/
+*.local
+
+# 数据库
+*.db
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# MinIO data
+minio_data/
