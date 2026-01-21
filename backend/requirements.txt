@@ -1,62 +1,91 @@
 # 地方志数据智能管理系统 - 后端依赖
+# 增强版AI推理系统
 
-# Web 框架
+# ========== Web 框架 ==========
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 python-multipart==0.0.6
 starlette==0.35.1
+aiohttp==3.9.1
 
-# 数据库
+# ========== 数据库 ==========
 sqlalchemy==2.0.25
 asyncpg==0.29.0
 alembic==1.13.1
 redis==5.0.1
 
-# 认证与安全
+# ========== 认证与安全 ==========
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 pydantic[email]==2.5.3
 pydantic-settings==2.1.0
 
-# 文件处理
+# ========== 文件处理 ==========
 python-magic==0.4.27
 openpyxl==3.1.2
 pandas==2.1.4
 xlrd==2.0.1
 
-# AI 与 NLP
+# ========== AI 核心 ==========
 openai==1.10.0
 langchain==0.1.4
+langchain-community==0.0.16
 tiktoken==0.5.2
 jieba==0.42.1
 
-# 数据分析与可视化
+# ========== 嵌入模型 ==========
+sentence-transformers==2.2.2
+transformers==4.36.2
+torch>=2.0.0
+
+# ========== 向量存储 ==========
+faiss-cpu==1.7.4
+chromadb==0.4.22
+hnswlib==0.8.0
+
+# ========== 高级RAG ==========
+rank-bm25==0.2.2           # BM25稀疏检索
+
+# ========== 重排序 ==========
+# cross-encoder模型通过sentence-transformers加载
+
+# ========== 数据分析与可视化 ==========
 matplotlib==3.8.2
 numpy==1.26.3
 scipy==1.12.0
 seaborn==0.13.1
 
-# 异步任务
+# ========== 异步任务 ==========
 celery==5.3.6
 flower==2.0.1
 
-# 存储
+# ========== 存储 ==========
 boto3==1.34.25
 minio==7.2.3
 
-# 监控与日志
+# ========== 监控与日志 ==========
 prometheus-client==0.19.0
 structlog==24.1.0
 sentry-sdk[fastapi]==1.39.2
+opentelemetry-api==1.22.0
+opentelemetry-sdk==1.22.0
+opentelemetry-instrumentation-fastapi==0.43b0
 
-# 工具
+# ========== 工具 ==========
 httpx==0.26.0
 tenacity==8.2.3
 python-dotenv==1.0.0
 orjson==3.9.12
+cachetools==5.3.2          # 缓存工具
 
-# 测试
+# ========== 系统监控 ==========
+psutil==5.9.8              # 系统资源监控
+
+# ========== 配置管理 ==========
+pyyaml==6.0.1              # YAML配置解析
+
+# ========== 测试 ==========
 pytest==7.4.4
 pytest-asyncio==0.23.3
 pytest-cov==4.1.0
-httpx==0.26.0
+faker==22.2.0              # 测试数据生成

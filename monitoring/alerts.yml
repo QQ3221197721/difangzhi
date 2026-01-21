@@ -1,0 +1,93 @@
+# 地方志数据智能管理系统 - 告警规则
+groups:
+  - name: backend
+    rules:
+      # 服务不可用
+      - alert: BackendDown
+        expr: up{job="backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "后端服务不可用"
+          description: "后端服务已停止响应超过1分钟"
+
+      # 高错误率
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(http_requests_total{status=~"5.."}[5m])) /
+          sum(rate(http_requests_total[5m])) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "HTTP错误率过高"
+          description: "5xx错误率超过5%"
+
+      # 高延迟
+      - alert: HighLatency
+        expr: |
+          histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API响应延迟过高"
+          description: "P95延迟超过1秒"
+
+  - name: database
+    rules:
+      # 数据库连接数过高
+      - alert: DatabaseConnectionsHigh
+        expr: pg_stat_activity_count > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "数据库连接数过高"
+          description: "当前连接数: {{ $value }}"
+
+      # 慢查询
+      - alert: SlowQueries
+        expr: pg_stat_statements_mean_time_seconds > 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "存在慢查询"
+          description: "平均查询时间超过1秒"
+
+  - name: redis
+    rules:
+      # Redis内存使用过高
+      - alert: RedisMemoryHigh
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis内存使用过高"
+          description: "内存使用率: {{ $value | humanizePercentage }}"
+
+  - name: system
+    rules:
+      # CPU使用过高
+      - alert: HighCPU
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU使用率过高"
+          description: "CPU使用率: {{ $value }}%"
+
+      # 磁盘空间不足
+      - alert: DiskSpaceLow
+        expr: |
+          (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 15
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "磁盘空间不足"
+          description: "剩余空间: {{ $value }}%"
